@@ -1,11 +1,12 @@
 const Firestore = require("@google-cloud/firestore");
 const shortid = require("shortid");
 const bcrypt = require("bcrypt");
+
 const { projectId, keyFilename } = require("../config").firestore;
 const mail = require("./mailer");
 
 const db =
-  process.env.NODE_ENV === "development"
+  require("../config").env === "development"
     ? new Firestore({
         projectId,
         keyFilename,
