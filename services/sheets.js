@@ -4,7 +4,7 @@ const { keyFilename } = require("../config").firestore;
 const { google } = require("googleapis");
 
 const auth =
-  app.get("env") === "development"
+  process.env.NODE_ENV === "development"
     ? new google.auth.GoogleAuth({
         keyFile: keyFilename,
         scopes: ["https://www.googleapis.com/auth/spreadsheets"],

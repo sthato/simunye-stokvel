@@ -5,7 +5,7 @@ const { projectId, keyFilename } = require("../config").firestore;
 const mail = require("./mailer");
 
 const db =
-  app.get("env") === "development"
+  process.env.NODE_ENV === "development"
     ? new Firestore({
         projectId,
         keyFilename,
