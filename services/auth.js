@@ -5,7 +5,6 @@ require("./mailer");
 
 const authenticateUser = async (email, password, done) => {
   let result = await firestoreSvc.getUser(email, password, done);
-  console.log(result);
   return result;
 };
 const serializeUser = (user, done) => {
