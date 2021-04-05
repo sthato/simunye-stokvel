@@ -1,6 +1,6 @@
 {
   "name": "simunye-stokvel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Stokvel Tracker",
   "main": "server.js",
   "scripts": {
