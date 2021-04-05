@@ -1,11 +1,11 @@
 {
-  "name": "Simunye",
+  "name": "simunye-stokvel",
   "version": "1.0.0",
   "description": "Stokvel Tracker",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "local": "nodemon -r dotenv/config server.js"
+    "dev": "nodemon -r dotenv/config server.js"
   },
   "keywords": [],
   "author": "",
