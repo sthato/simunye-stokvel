@@ -1,13 +1,10 @@
-const bcrypt = require("bcrypt");
 const LocalStrategy = require("passport-local").Strategy;
 const firestoreSvc = require("./firestore");
 require("./sheets");
 require("./mailer");
 
 const authenticateUser = async (email, password, done) => {
-  console.log("Authenticating...", email);
   let result = await firestoreSvc.getUser(email, password, done);
-  console.log(result);
   return result;
 };
 const serializeUser = (user, done) => {

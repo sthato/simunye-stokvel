@@ -1,12 +1,17 @@
-const { spreadsheetId, sheetRange } = require("../config").googlesheets;
-const { projectId, keyFilename } = require("../config").firestore;
+const { spreadsheetId } = require("../config").googlesheets;
+const { keyFilename } = require("../config").firestore;
 
 const { google } = require("googleapis");
 
-const auth = new google.auth.GoogleAuth({
-  keyFile: keyFilename,
-  scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-});
+const auth =
+  require("../config").env === "development"
+    ? new google.auth.GoogleAuth({
+        keyFile: keyFilename,
+        scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+      })
+    : new google.auth.GoogleAuth({
+        scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+      });
 
 const sheets = google.sheets({ version: "v4", auth });
 
@@ -56,7 +61,7 @@ const getSheetData = (sheet, accountId) => {
 
 const getBalance = (accountId) => {
   try {
-    return getSheetData("Balances", accountId); //Only 1 row per user
+    return getSheetData("Balances", accountId);
   } catch (error) {
     throw error;
   }
@@ -68,21 +73,6 @@ const getDepositsByAccountId = (accountId) => {
   } catch (error) {
     throw error;
   }
-};
-
-const getData = () => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      let res = await sheets.spreadsheets.values.get({
-        spreadsheetId,
-        range: sheetRange,
-      });
-      resolve(res.data.values);
-    } catch (e) {
-      console.error(e);
-      reject(e);
-    }
-  });
 };
 
 module.exports = {

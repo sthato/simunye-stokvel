@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const svcSheets = require("../models/sheets");
+const svcSheets = require("../services/sheets");
 
 router.use((req, res, next) => {
   if (req.user && req.user.accountID) {

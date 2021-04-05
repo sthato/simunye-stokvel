@@ -1,13 +1,17 @@
 const Firestore = require("@google-cloud/firestore");
 const shortid = require("shortid");
 const bcrypt = require("bcrypt");
+
 const { projectId, keyFilename } = require("../config").firestore;
 const mail = require("./mailer");
 
-const db = new Firestore({
-  projectId,
-  keyFilename,
-});
+const db =
+  require("../config").env === "development"
+    ? new Firestore({
+        projectId,
+        keyFilename,
+      })
+    : new Firestore();
 
 const createUser = async (user) => {
   try {
@@ -76,14 +80,7 @@ const getUserById = async (username, done) => {
     return done(err);
   }
 };
-/*
-createUser({
-  username: "sthato@hotmail.com",
-  first: "Thato",
-  last: "Shebe",
-  email: "sthato@hotmail.com",
-});
-*/
+
 module.exports = {
   createUser,
   getUser,

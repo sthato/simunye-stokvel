@@ -1,14 +1,16 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
+  "name": "simunye-stokvel",
+  "version": "1.0.1",
+  "description": "Stokvel Tracker",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "local": "nodemon -r dotenv/config server.js"
+    "dev": "nodemon -r dotenv/config server.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "stokvel"
+  ],
+  "author": "Thato Shebe<shebetm@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "@google-cloud/firestore": "^4.9.8",
@@ -29,5 +31,8 @@
   "devDependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0"
+  },
+  "engines": {
+    "node": "12.x.x"
   }
 }

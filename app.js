@@ -30,20 +30,15 @@ app.use(
 app.use(passport.initialize());
 app.use(flash());
 app.use(passport.session());
-//app.use(helmet());
+if (app.get("env") !== "development") {
+  app.use(helmet());
+}
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", index);
 app.use("/user", user);
 
-require("./models/account").initialize(passport);
-
-/*
-app.use((req, res) => {
-  console.log("Sending index.html");
-  res.sendFile("index.html", { root: "public" });
-});
-*/
+require("./services/auth").initialize(passport);
 
 app.use(function (req, res, next) {
   const err = new Error("Not Found");
