@@ -75,7 +75,16 @@ const getDepositsByAccountId = (accountId) => {
   }
 };
 
+const getMonthlyContributions = () => {
+  try {
+    return getSheetData("Monthly Contributions");
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   getBalance,
   getDepositsByAccountId,
+  getMonthlyContributions,
 };
