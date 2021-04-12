@@ -3,3 +3,4 @@ node_modules
 simunye-*.json
 *.yaml
 .gcloudignore
+public
