@@ -81,8 +81,26 @@ const getUserById = async (username, done) => {
   }
 };
 
+const changePassword = async (username, password) => {
+  let docRef = db.collection("users").doc(username);
+  try {
+    let doc = await docRef.get();
+    if (doc.exists) {
+      let hash = await bcrypt.hash(password, 10);
+      await db
+        .collection("users")
+        .doc(username)
+        .set({ password: hash }, { merge: true });
+    } else {
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 module.exports = {
   createUser,
   getUser,
   getUserById,
+  changePassword,
 };
