@@ -33,6 +33,7 @@ app.use(passport.session());
 if (app.get("env") !== "development") {
   app.use(helmet());
 }
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", index);
 app.use("/user", user);
@@ -64,7 +65,9 @@ app.use(function (err, req, res, next) {
 });
 */
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 app.listen(port, () => {
   console.log(`Server running...`);
