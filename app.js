@@ -11,11 +11,11 @@ const app = express();
 
 const index = require("./routes/index");
 const user = require("./routes/user");
-
+/*
 if (app.get("env") === "development") {
   app.use(require("cors")());
 }
-
+*/
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
