@@ -15,6 +15,7 @@ router.post("/login", passport.authenticate("local", {}), (req, res, next) => {
       firstname: req.user.first,
       lastname: req.user.last,
       role: req.user.role,
+      avatar: req.user.avatar,
     });
   });
 });

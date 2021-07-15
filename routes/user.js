@@ -18,6 +18,7 @@ router.get("/", (req, res) => {
     firstname: req.user.first,
     lastname: req.user.last,
     role: req.user.role,
+    avatar: req.user.avatar,
   };
   res.json(user);
 });
