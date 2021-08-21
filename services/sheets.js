@@ -67,9 +67,12 @@ const getBalance = (accountId) => {
   }
 };
 
-const getDepositsByAccountId = (accountId) => {
+const getDepositsByAccountId = async (accountId) => {
   try {
-    return getSheetData("Deposits", accountId);
+    const deposits = await getSheetData("Deposits", accountId);
+    return deposits.map(
+      (AccountID, Month, Semester, ...properties) => properties
+    );
   } catch (error) {
     throw error;
   }
