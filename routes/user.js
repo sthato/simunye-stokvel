@@ -3,6 +3,13 @@ const router = express.Router();
 const svcSheets = require("../services/sheets");
 const svcFirestore = require("../services/firestore");
 
+const pad = (month) => {
+  if (month < 10) {
+    return `0${month}`;
+  }
+  return month;
+};
+
 router.use((req, res, next) => {
   if (req.user && req.user.accountID) {
     next();
@@ -62,13 +69,6 @@ router.get("/contributions", async (req, res, next) => {
     let period = 18; //Number of months
     let contributionsBreakdown = {};
 
-    const pad = (month) => {
-      if (month < 10) {
-        return `0${month}`;
-      }
-      return month;
-    };
-
     for (
       let currentYearMonth = `${startYear}-${pad(startMonth)}`;
       currentYearMonth <= `${endYear}-${pad(endMonth)}`;
@@ -94,12 +94,6 @@ router.get("/allcontributions", async (req, res, next) => {
   try {
     let monthlyContributions = await svcSheets.getMonthlyContributions();
     let now = new Date();
-    const pad = (month) => {
-      if (month < 10) {
-        return `0${month}`;
-      }
-      return month;
-    };
     let output = [];
     let index = 0;
     while (
