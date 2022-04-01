@@ -2,6 +2,7 @@ module.exports = {
   port: process.env.PORT || 3001,
   env: process.env.NODE_ENV || "development",
   secret: process.env.SESSION_SECRET,
+  startYear: process.env.START_YEAR || new Date().getFullYear(),
   firestore: {
     projectId: process.env.FIRESTORE_PROJECT_ID,
     keyFilename: process.env.FIRESTORE_KEYFILE,
